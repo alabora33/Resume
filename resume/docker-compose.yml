@@ -1,0 +1,20 @@
+# docker compose version dan seçilebilir her versionun farklı özelliği olabilir uygun olanı seçmek gerekli
+version: "3.8"
+# services ile container ler tanımlanır
+services:
+ # 1 tane app container i tanımlandı
+ app:
+   # build aşamasında neler kullanacak onları giriyoruz
+   build:
+     # context dizin yani dosyalar nerede onları gösterir ( . ile olan dizin belirtilmiş olur)
+     context: .
+     # dockerfile dosyası eklenir
+     dockerfile: Dockerfile
+     # dışarıya hangi porttan yayın yapılacağı belirtilir localhost:8000 veya 127.0.0.1:8000 demektir bu
+   ports:
+     - "0.0.0.0:8000:8000"
+   # command Dockerfile bittikten sonra koşulacak komut ve port da eklendi
+   command: python manage.py runserver 0.0.0.0:8000
+# site içinde yapılan uploadlar yada css js dosyalarını static-data adında bir harddrive a atıyor yani docker sanal makinesini yürütürken django için ayrı bir hafıza ayırıyor
+volumes:
+  static-data:
