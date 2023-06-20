@@ -4,12 +4,16 @@ FROM python:3.10-slim
 RUN apt-get update
 # geliştirici kitleri uygulamada yer yer ihtiyaç var ondan eklendi (-y her soruya yes anlamı içerir)
 RUN apt-get install python3-dev build-essential -y
+# multiprocess işlemlerde gereksiz ve önemsiz pyc uzantılı sadece log gibi görünen dosyaları üretmessini engeller
+ENV PYTHONDONTWRITEBYTECODE 1
+# değişken üretiyoruz ve bu değişkenin karşılıpğı olan yerlere ekliyoruz venv in olduğu yer ( çok fazla kullanılan parametreler için örnek bir uygulama)
+ENV VIRTUAL_ENV=/opt/venv
 #pip i upgrade yap
 RUN pip install --upgrade pip
 # virtual enviroment indir ve kur (docker sistemi linux olduğundan opt içine venv adında virtual enviroment kurduk)
-RUN pip install virtualenv && python -m virtualenv /opt/venv
+RUN pip install virtualenv && python -m virtualenv $VIRTUAL_ENV
 #bizim burada linux da oluşturduğumuz venv e bağlanması için aşağıdaki komut ile patj e erişebiliriz
-ENV PATH="/opt/venv/bin:$PATH"
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 # add ile dizinimizde bulunan bir dosyanın alıp docker daki yerine atıyoruz örnek olarak requirements.txt nin aynısını aldı
 ADD ./requirements.txt /tmp/requirements.txt
 # şimdi de requirements.txt yi çalıştırmamız lazım
