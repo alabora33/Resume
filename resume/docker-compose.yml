@@ -13,6 +13,8 @@ services:
    # env dosyamızı da çalıştırıyoruz
    env_file:
      - resume/docker.env
+   volumes:
+     - .:/srv/app
      # dışarıya hangi porttan yayın yapılacağı belirtilir localhost:8000 veya 127.0.0.1:8000 demektir bu
    ports:
      - "0.0.0.0:8000:8000"
