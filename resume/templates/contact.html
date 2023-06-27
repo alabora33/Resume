@@ -1,16 +1,9 @@
+{% extends 'layout.html' %}
 {% load static %}
-
-<!doctype html>
-<html lang="en">
-{% include 'includes/head.html' %}
-
-<body>
-
-{% include 'includes/navbar.html' %}
 
 <!--================Header Menu Area =================-->
 
-<!--================Home Banner Area =================-->
+{% block banner_area %}
 <section class="banner_area">
     <div class="box_1620">
         <div class="banner_inner d-flex align-items-center">
@@ -26,8 +19,9 @@
         </div>
     </div>
 </section>
-<!--================End Home Banner Area =================-->
+{% endblock %}
 
+{% block content %}
 <!--================Contact Area =================-->
 <section class="contact_area p_120">
     <div class="container">
@@ -123,10 +117,11 @@
     </div>
 </div>
 <!--================End Contact Success and Error message Area =================-->
-
-{% include 'includes/footer.html' %}
+{% endblock %}
 
 <!-- Optional JavaScript -->
+
+{% block extra_scripts %}
 <!-- contact js -->
 <script src="{% static 'js/jquery.form.js' %}"></script>
 <script src="{% static 'js/jquery.validate.min.js' %}"></script>
@@ -134,5 +129,4 @@
 <!--gmaps Js-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 <script src="{% static 'js/gmaps.min.js' %}"></script>
-</body>
-</html>
+{% endblock %}
