@@ -35,7 +35,6 @@ def index(request):
         'home_banner_image':home_banner_image,
         'site_favicon':site_favicon,
         'skills':skills,
-
     }
     return render(request,'index.html',context=context)
 
