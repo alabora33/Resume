@@ -1,9 +1,30 @@
 from django.db import models
 
+
+
+class AbstractModel(models.Model):
+    updated_date = models.DateTimeField(
+        blank=True,
+        auto_now=True,
+        verbose_name='Updated Date',
+        help_text=''
+    )
+    # tüm tablolarda olacak ve auto_now ile veriyi her güncellediğimizde otomatik olarak updated_date de update edilecek
+    created_date = models.DateTimeField(
+        blank=True,
+        auto_now_add=True,
+        verbose_name='Created Date',
+        help_text=''
+    )
+    # auto_now_add de veriyi her güncellediğinde değilde yaratıldığında 1 kere güncelliyor sadece
+    class Meta:
+        abstract=True
+
+
 # Create your models here.
 #django dan inherite ettiğimiz modelimizi nesne olarak tanımlıyoruz. Database deki bir tablo olduğunu belirtmiş oluyoruz
 #field ler yani exceldeki sütunlar gibi bunları belirtiyoruz
-class GeneralSetting(models.Model):
+class GeneralSetting(AbstractModel):
     name = models.CharField(
         default='',
         max_length=254,
@@ -27,21 +48,7 @@ class GeneralSetting(models.Model):
         verbose_name='Parameter',
         help_text = ''
     )
-#name kısmı örnek oalrak About Me yazısı içindeki uzun yazılar da parameter de belirtilir
-    updated_date = models.DateTimeField(
-        blank=True,
-        auto_now=True,
-        verbose_name='Updated Date',
-        help_text = ''
-    )
-#tüm tablolarda olacak ve auto_now ile veriyi her güncellediğimizde otomatik olarak updated_date de update edilecek
-    created_date = models.DateTimeField(
-        blank=True,
-        auto_now_add=True,
-        verbose_name='Created Date',
-        help_text = ''
-    )
-#auto_now_add de veriyi her güncellediğinde değilde yaratıldığında 1 kere güncelliyor sadece
+#name kısmı örnek olarak About Me yazısı içindeki uzun yazılar da parameter de belirtilir
 
     def __str__(self):
         return f'General Setting: {self.name}'
@@ -51,7 +58,7 @@ class GeneralSetting(models.Model):
         verbose_name_plural = 'General Settings'
         ordering = ('name',)
 
-class ImageSetting(models.Model):
+class ImageSetting(AbstractModel):
     name = models.CharField(
         default='',
         max_length=254,
@@ -73,18 +80,7 @@ class ImageSetting(models.Model):
         blank=True,
         upload_to='images/',
     )
-    updated_date = models.DateTimeField(
-        blank=True,
-        auto_now=True,
-        verbose_name='Updated Date',
-        help_text=''
-    )
-    created_date = models.DateTimeField(
-        blank=True,
-        auto_now_add=True,
-        verbose_name='Created Date',
-        help_text=''
-    )
+
 
     def __str__(self):
         return f'Image Setting: {self.name}'
