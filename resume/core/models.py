@@ -143,9 +143,9 @@ class Experience(AbstractModel):
         verbose_name='End Date'
     )
     def __str__(self):
-        return f'Experience: {self.name}'
+        return f'Experience: {self.company_name}'
 
     class Meta:
         verbose_name = 'Experience'
         verbose_name_plural = 'Experience'
-        ordering = ('start_date',)
+        ordering = ('-start_date',)
