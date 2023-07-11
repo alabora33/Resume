@@ -85,6 +85,7 @@ class ImageSetting(models.Model):
         verbose_name='Created Date',
         help_text=''
     )
+
     def __str__(self):
         return f'Image Setting: {self.name}'
 
