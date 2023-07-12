@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from core.models import GeneralSetting, ImageSetting,Skill,Experience,Education
+from core.models import GeneralSetting, ImageSetting,Skill,Experience,Education,SocialMedia
 
 
 
@@ -26,7 +26,12 @@ def index(request):
 
     #Experiences
     experiences = Experience.objects.all()
+
+    #Educations
     educations = Education.objects.all()
+
+    #SocialMedia
+    socialmedia = SocialMedia.objects.all()
 
     context={
         'site_title':site_title,
@@ -43,6 +48,7 @@ def index(request):
         'skills':skills,
         'experiences':experiences,
         'educations':educations,
+        'socialmedia':socialmedia,
     }
     return render(request,'index.html',context=context)
 
