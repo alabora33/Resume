@@ -107,6 +107,7 @@
                                     </div>
                                     <div class="media-body">
                                         <h4>{{ experience.company_name }}</h4>
+                                        <img src="{{ experience.images.url }}" alt="" style="height: 100px; width: 100px; ">
                                         <p>{{ experience.job_title }} <br/>{{ experience.job_location}}</p>
                                     </div>
                                 </div>
@@ -116,42 +117,22 @@
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <ul class="list">
+                        {% for education in educations %}
                         <li>
                             <span></span>
                             <div class="media">
                                 <div class="d-flex">
-                                    <p>March 2017 to present</p>
+                                    <p>{{ education.start_date|date:"Y"}} - {{ education.end_date|date:"Y"}}</p>
                                 </div>
-                                <div class="media-body">
-                                    <h4>Colorlib</h4>
-                                    <p>Senior Web Developer <br/>Santa monica, Los angeles</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <span></span>
-                            <div class="media">
-                                <div class="d-flex">
-                                    <p>March 2017 to present</p>
-                                </div>
-                                <div class="media-body">
-                                    <h4>Colorlib</h4>
-                                    <p>Senior Web Developer <br/>Santa monica, Los angeles</p>
+                                <div class="media-body" >
+                                    <h4>{{ education.school_name }}</h4>
+                                    <img src="{{ education.logos.url }}" alt="" style="height: 100px; width: 100px; ">
+                                    <p>{{ education.edu_level }}<br/>{{ education.departmant }}</p>
+                                    <p>{{ education.school_location }}<br/>{{ education.score }}</p>
                                 </div>
                             </div>
                         </li>
-                        <li>
-                            <span></span>
-                            <div class="media">
-                                <div class="d-flex">
-                                    <p>March 2017 to present</p>
-                                </div>
-                                <div class="media-body">
-                                    <h4>Colorlib</h4>
-                                    <p>Senior Web Developer <br/>Santa monica, Los angeles</p>
-                                </div>
-                            </div>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

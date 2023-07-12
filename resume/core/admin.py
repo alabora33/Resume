@@ -31,9 +31,18 @@ class GeneralSettingAdmin(admin.ModelAdmin):
 
 @admin.register(Experience)
 class GeneralSettingAdmin(admin.ModelAdmin):
-    list_display = ['id','company_name', 'job_title', 'job_location', 'start_date', 'end_date']
+    list_display = ['id','company_name', 'job_title', 'job_location', 'images', 'start_date', 'end_date']
     search_fields = ['company_name', 'job_title', 'job_location']
-    list_editable = ['company_name', 'job_title', 'job_location', 'start_date', 'end_date']
+    list_editable = ['company_name', 'job_title', 'job_location', 'images', 'start_date', 'end_date']
 
     class Meta:
         model = Experience
+
+@admin.register(Education)
+class GeneralSettingAdmin(admin.ModelAdmin):
+    list_display = ['id','school_name', 'edu_level', 'school_location', 'departmant', 'score', 'logos','start_date', 'end_date']
+    search_fields = ['school_name', 'edu_level', 'school_location']
+    list_editable = ['school_name', 'edu_level', 'school_location', 'departmant', 'score', 'logos', 'start_date', 'end_date']
+
+    class Meta:
+        model = Education

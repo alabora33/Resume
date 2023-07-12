@@ -133,6 +133,13 @@ class Experience(AbstractModel):
         blank=True,
         verbose_name='Job Location',
     )
+    images = models.ImageField(
+        default='',
+        verbose_name='Image',
+        help_text='',
+        blank=True,
+        upload_to='images/',
+    )
     start_date = models.DateField(
         verbose_name='Start Date'
     )
@@ -147,5 +154,61 @@ class Experience(AbstractModel):
 
     class Meta:
         verbose_name = 'Experience'
-        verbose_name_plural = 'Experience'
+        verbose_name_plural = 'Experiences'
+        ordering = ('-start_date',)
+
+class Education(AbstractModel):
+    school_name = models.CharField(
+        default='',
+        max_length=254,
+        blank=True,
+        verbose_name='School Name',
+    )
+    edu_level = models.CharField(
+        default='',
+        max_length=254,
+        blank=True,
+        verbose_name='Education Level',
+    )
+    school_location= models.CharField(
+        default='',
+        max_length=254,
+        blank=True,
+        verbose_name='School Location',
+    )
+    departmant =models.CharField(
+        default='',
+        max_length=254,
+        blank=True,
+        verbose_name='Departmant',
+    )
+    score = models.FloatField(
+        verbose_name='Score',
+        default='',
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(0), MaxValueValidator(4)]
+    )
+    logos = models.ImageField(
+        default='',
+        verbose_name='Image',
+        help_text='',
+        blank=True,
+        upload_to='images/',
+    )
+    start_date = models.DateField(
+        verbose_name='Start Date'
+    )
+    end_date = models.DateField(
+        default=None,
+        null=True,
+        blank=True,
+        verbose_name='End Date'
+    )
+    def __str__(self):
+        return f'Education: {self.school_name}'
+
+    class Meta:
+        verbose_name = 'Education'
+        verbose_name_plural = 'Educations'
         ordering = ('-start_date',)
