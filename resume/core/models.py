@@ -284,3 +284,5 @@ class Document(AbstractModel):
         verbose_name = 'Document'
         verbose_name_plural = 'Documents'
         ordering = ('order',)
+
+
