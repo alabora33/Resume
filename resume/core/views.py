@@ -2,9 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from core.models import GeneralSetting, ImageSetting,Skill,Experience,Education,SocialMedia,Document
 
 
-
-# Create your views here.
-def index(request):
+def layout(request):
     site_title = GeneralSetting.objects.get(name='site_title').parameter
     site_keywords = GeneralSetting.objects.get(name='site_keywords').parameter
     site_description = GeneralSetting.objects.get(name='site_description').parameter
@@ -20,6 +18,32 @@ def index(request):
     home_banner_image = ImageSetting.objects.get(name='home_banner_image').file
     site_favicon = ImageSetting.objects.get(name='site_favicon').file
 
+    #SocialMedia
+    socialmedia = SocialMedia.objects.all()
+
+    #Documents
+    documents = Document.objects.all()
+
+    context = {
+        'site_title': site_title,
+        'site_keywords': site_keywords,
+        'site_description': site_description,
+        'home_banner_name': home_banner_name,
+        'home_banner_title': home_banner_title,
+        'home_banner_description': home_banner_description,
+        'about_myself_footer': about_myself_footer,
+        'about_myself_welcome': about_myself_welcome,
+        'header_logo': header_logo,
+        'home_banner_image': home_banner_image,
+        'site_favicon': site_favicon,
+        'socialmedia': socialmedia,
+        'documents': documents,
+    }
+    return context
+
+# Create your views here.
+def index(request):
+
     #Skills
     skills = Skill.objects.all()
     # .order_by('order') order veya neye göre web de sıralıcaksak onu yazarız default u admin sayfasındaki
@@ -30,29 +54,11 @@ def index(request):
     #Educations
     educations = Education.objects.all()
 
-    #SocialMedia
-    socialmedia = SocialMedia.objects.all()
-
-    #Documents
-    documents = Document.objects.all()
 
     context={
-        'site_title':site_title,
-        'site_keywords': site_keywords,
-        'site_description':site_description,
-        'home_banner_name': home_banner_name,
-        'home_banner_title': home_banner_title,
-        'home_banner_description': home_banner_description,
-        'about_myself_footer': about_myself_footer,
-        'about_myself_welcome': about_myself_welcome,
-        'header_logo':header_logo,
-        'home_banner_image':home_banner_image,
-        'site_favicon':site_favicon,
         'skills':skills,
         'experiences':experiences,
         'educations':educations,
-        'socialmedia':socialmedia,
-        'documents':documents,
     }
     return render(request,'index.html',context=context)
 
