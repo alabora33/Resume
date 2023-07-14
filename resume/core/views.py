@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from core.models import GeneralSetting, ImageSetting,Skill,Experience,Education,SocialMedia
+from django.shortcuts import render, redirect, get_object_or_404
+from core.models import GeneralSetting, ImageSetting,Skill,Experience,Education,SocialMedia,Document
 
 
 
@@ -33,6 +33,9 @@ def index(request):
     #SocialMedia
     socialmedia = SocialMedia.objects.all()
 
+    #Documents
+    documents = Document.objects.all()
+
     context={
         'site_title':site_title,
         'site_keywords': site_keywords,
@@ -49,6 +52,10 @@ def index(request):
         'experiences':experiences,
         'educations':educations,
         'socialmedia':socialmedia,
+        'documents':documents,
     }
     return render(request,'index.html',context=context)
 
+def redirect_urls(request, slug):
+    doc = get_object_or_404(Document, slug=slug)
+    return  redirect(doc.file.url)

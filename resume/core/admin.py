@@ -1,5 +1,7 @@
 from django.contrib import admin
 from core.models import *
+
+
 # Register your models here.
 
 @admin.register(GeneralSetting)
@@ -11,6 +13,7 @@ class GeneralSettingAdmin(admin.ModelAdmin):
     class Meta:
         model = GeneralSetting
 
+
 @admin.register(ImageSetting)
 class GeneralSettingAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'description', 'file', 'updated_date', 'created_date']
@@ -19,6 +22,7 @@ class GeneralSettingAdmin(admin.ModelAdmin):
 
     class Meta:
         model = ImageSetting
+
 
 @admin.register(Skill)
 class GeneralSettingAdmin(admin.ModelAdmin):
@@ -29,29 +33,44 @@ class GeneralSettingAdmin(admin.ModelAdmin):
     class Meta:
         model = Skill
 
+
 @admin.register(Experience)
 class GeneralSettingAdmin(admin.ModelAdmin):
-    list_display = ['id','company_name', 'job_title', 'job_location', 'images', 'start_date', 'end_date']
+    list_display = ['id', 'company_name', 'job_title', 'job_location', 'images', 'start_date', 'end_date']
     search_fields = ['company_name', 'job_title', 'job_location']
     list_editable = ['company_name', 'job_title', 'job_location', 'images', 'start_date', 'end_date']
 
     class Meta:
         model = Experience
 
+
 @admin.register(Education)
 class GeneralSettingAdmin(admin.ModelAdmin):
-    list_display = ['id','school_name', 'edu_level', 'school_location', 'departmant', 'score', 'logos','start_date', 'end_date']
+    list_display = ['id', 'school_name', 'edu_level', 'school_location', 'departmant', 'score', 'logos', 'start_date',
+                    'end_date']
     search_fields = ['school_name', 'edu_level', 'school_location']
-    list_editable = ['school_name', 'edu_level', 'school_location', 'departmant', 'score', 'logos', 'start_date', 'end_date']
+    list_editable = ['school_name', 'edu_level', 'school_location', 'departmant', 'score', 'logos', 'start_date',
+                     'end_date']
 
     class Meta:
         model = Education
 
+
 @admin.register(SocialMedia)
 class GeneralSettingAdmin(admin.ModelAdmin):
-    list_display = ['id','order', 'link', 'icon','updated_date', 'created_date']
-    search_fields = [ 'link', 'icon']
+    list_display = ['id', 'order', 'link', 'icon', 'updated_date', 'created_date']
+    search_fields = ['link', 'icon']
     list_editable = ['order', 'link', 'icon']
 
     class Meta:
         model = SocialMedia
+
+
+@admin.register(Document)
+class GeneralSettingAdmin(admin.ModelAdmin):
+    list_display = ['id', 'order', 'slug', 'button_text', 'file', 'updated_date', 'created_date']
+    search_fields = ['slug', 'button_text']
+    list_editable = ['order', 'slug', 'button_text', 'file']
+
+    class Meta:
+        model = Document
