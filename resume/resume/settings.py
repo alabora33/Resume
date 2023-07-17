@@ -81,12 +81,9 @@ WSGI_APPLICATION = 'resume.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+    'default': env.db()
 
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -143,4 +140,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #Email Settings
 vars().update(env.email_url())
 DEFAULT_FROM_EMAIL = 'Ali Bora Varinli <aliboravarinli@gmail.com>'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBakcend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

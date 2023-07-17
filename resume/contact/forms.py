@@ -31,8 +31,8 @@ class ContactForm(forms.Form):
                              'Subject: %s\n' \
                              'Email: %s\n' \
                              'Message: %s\n' % (name, subject, email, message)
-            #send mail here
 
+            #send mail here
             email = EmailMessage(
                 subject,
                 message_context,

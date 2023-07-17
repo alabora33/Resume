@@ -3,7 +3,9 @@ FROM python:3.10-slim
 # update yapmayı sağlar
 RUN apt-get update
 # geliştirici kitleri uygulamada yer yer ihtiyaç var ondan eklendi (-y her soruya yes anlamı içerir)
+RUN apt-get install libpq-dev -y
 RUN apt-get install python3-dev build-essential -y
+RUN apt-get install postgresql-client -y
 # multiprocess işlemlerde gereksiz ve önemsiz pyc uzantılı sadece log gibi görünen dosyaları üretmessini engeller
 ENV PYTHONDONTWRITEBYTECODE 1
 # değişken üretiyoruz ve bu değişkenin karşılıpğı olan yerlere ekliyoruz venv in olduğu yer ( çok fazla kullanılan parametreler için örnek bir uygulama)
