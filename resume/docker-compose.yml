@@ -3,18 +3,13 @@ version: "3.8"
 # services ile container ler tanımlanır
 services:
   postgres:
-    # hazırda kurulu tüm postgres in son versiyonunu getir
     image: postgres:latest
-    # env dosyamızı da çalıştırıyoruz
     env_file:
       - resume/docker.env
-    # default port postgresql in default portu yayın için
     ports:
       - "5432:5432"
-    # postgresql dataları tuttuğu dizini ekliyoruz
     volumes:
       - "postgresql-data:/var/lib/postgresql/data"
-    # local den veya app den her yerden bağlanabilmek için aşağıdaki komutu kullanıyoruz
     command: -p 5432
 
   # 1 tane app container i tanımlandı
@@ -25,7 +20,6 @@ services:
       context: .
       # dockerfile dosyası eklenir
       dockerfile: Dockerfile
-      # önce postgres e bağlanıp çalıştıktan sonra app çalışacak onu temsil ediyor
     depends_on:
       - postgres
     # env dosyamızı da çalıştırıyoruz
@@ -37,11 +31,9 @@ services:
     ports:
       - "0.0.0.0:8000:8000"
     # command Dockerfile bittikten sonra koşulacak komut ve port da eklendi
-    command: gunicorn resume.wsgi:application --bind 0.0.0.0:8000
-    #command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
 # site içinde yapılan uploadlar yada css js dosyalarını static-data adında bir harddrive a atıyor yani docker sanal makinesini yürütürken django için ayrı bir hafıza ayırıyor
 
 volumes:
-  # volume tanımı olarak eklendi
   postgresql-data:
   static-data:
