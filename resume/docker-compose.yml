@@ -14,8 +14,8 @@ services:
 
   # 1 tane app container i tanımlandı
   app:
-    container_name: app_resume
-    hostname: app_resume
+    container_name: app_resume_test
+    hostname: app_resume_test
     # build aşamasında neler kullanacak onları giriyoruz
     build:
       # context dizin yani dosyalar nerede onları gösterir ( . ile olan dizin belirtilmiş olur)
