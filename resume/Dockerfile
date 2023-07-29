@@ -20,10 +20,15 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 ADD ./requirements.txt /tmp/requirements.txt
 # şimdi de requirements.txt yi çalıştırmamız lazım
 RUN pip install -r /tmp/requirements.txt
+
+COPY entrypoints.sh /srv/entrypoint.sh
+RUN sed -i 's/\r$//g' /srv/entrypoint.sh
+RUN chmod +x /srv/entrypoint.sh
+
 # local deki her şeyi ( . işareti her şeyi demek) linux da serv içinde app e kopyala
 COPY . /srv/app
 # Workdir ile app in içine git
 WORKDIR /srv/app
 # Dockerfile dosyasında sürekli çalışan şeyler eklenmez örnek olarak runserver sürekli çalışacak
 # Kurulum tarzı şeyler çoğunlukla kullanılır
-ENTRYPOINT ["/srv/app/entrypoint.sh"]
+ENTRYPOINT ["/srv/entrypoint.sh"]
