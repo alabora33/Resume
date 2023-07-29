@@ -26,3 +26,4 @@ COPY . /srv/app
 WORKDIR /srv/app
 # Dockerfile dosyasında sürekli çalışan şeyler eklenmez örnek olarak runserver sürekli çalışacak
 # Kurulum tarzı şeyler çoğunlukla kullanılır
+ENTRYPOINT ["entrypoint.sh"]
