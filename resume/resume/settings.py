@@ -133,7 +133,7 @@ if DEBUG:
     MEDIA_URL = '/media/'
     MEDIA_ROOT = BASE_DIR / 'media'
 
-    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 else:
     AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
@@ -141,6 +141,8 @@ else:
     AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
     AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
 
+
+    DEFAULT_FILE_STORAGE = 'resume.custom_storages.MediaStorage'
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
     AWS_DEFAULT_ACL = 'public-read'
@@ -151,6 +153,12 @@ else:
 
     STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/'
     STATIC_ROOT = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazınaws.com/static/'
+
+    MEDIA_LOCATION = 'media'
+    DOCUMENT_LOCATION = MEDIA_LOCATION + '/documents'
+    IMAGE_SETTING_LOCATION = MEDIA_LOCATION + '/image_settings'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
